@@ -1,5 +1,5 @@
-import FormLogin from "@/app/components/formularios/form_login";
-import RodapeForm from "@/app/components/formularios/rodape_form";
+import FormLogin from "@/components/formularios/form_login";
+import RodapeForm from "@/components/formularios/rodape_form";
 import Image from 'next/image';
 import svg from '../../public/SVG_form_login.svg';
 

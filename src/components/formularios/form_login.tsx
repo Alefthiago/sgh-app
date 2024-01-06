@@ -1,4 +1,4 @@
-import '@/app/styles/formularios/form_login.css';
+import '@/styles/formularios/form_login.css';
 
 export default function FormLogin() {
     return (

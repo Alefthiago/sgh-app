@@ -1,4 +1,4 @@
-import '@/app/styles/formularios/form_rodape.css';
+import '@/styles/formularios/form_rodape.css';
 import Link from 'next/link';
 
 interface RodapeFormProps {

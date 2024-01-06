@@ -1,5 +1,5 @@
-import FormCadastro from "@/app/components/formularios/form_cadastro";
-import RodapeForm from "@/app/components/formularios/rodape_form";
+import FormCadastro from "@/components/formularios/form_cadastro";
+import RodapeForm from "@/components/formularios/rodape_form";
 
 export default function cadastroPage() {
     return (
