@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /*    CORES MODO LITE.     */
+  --background-lite: #0B8E95;
+  --cor-componentes-lite: #294D61;
+  /*   /CORES MODO LITE.     */
+
+  /*    CORES MODO DARK.     */
+  --background-dark: #072E33;
+  /*   /CORES MODO DARK.     */
+}
+
+body {
+  background: var(--background-lite);
+}
+
+* {
+  /*    SCROLLBAR.     */
+  scroll-behavior: smooth;
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--background-lite);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--cor-componentes-lite);
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: white;
+  }
+  /*   /SCROLLBAR.     */
+}
+
+#principal {
+  /* background-color: red; */
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#topo {
+  height: 2.5vh;
+}
+
+#rodape {
+  height: 2.5vh;
+}
+
+/*    ANIMA.     */
+/* @keyframes pendulo {
+  0% { transform: rotate(0deg); }
+  10% { transform: rotate(10deg); }
+  30% { transform: rotate(-10deg); }
+  50% { transform: rotate(10deg); }
+  70% { transform: rotate(-10deg); }
+  90% { transform: rotate(10deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.pendulo {
+  animation: pendulo 3s ease-in-out;
+  transform-origin: top center;
+} */
+/*   /ANIMA.     */
