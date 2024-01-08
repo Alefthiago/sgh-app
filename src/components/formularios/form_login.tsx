@@ -2,7 +2,7 @@ import '@/styles/formularios/form_login.css';
 
 export default function FormLogin() {
     return (
-        <div id="form_login" className={""}>
+        <div id="form_login">
             <form>
                 <fieldset>
                     <div className={"relative mb-3"}>
