@@ -1,8 +1,9 @@
-import FormLogin from "@/components/formularios/form_login";
-import RodapeForm from "@/components/formularios/rodape_form";
+import FormLogin from "@/components/formularios/Form_login";
+import RodapeForm from "@/components/formularios/Rodape_form";
 import Image from 'next/image';
 import svg from '../../public/SVG_form_login.svg';
 
+/* @client */
 export default function Home() {
   return (
     <div className=" w-full h-full flex flex-col justify-center items-center">
