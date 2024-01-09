@@ -1,8 +1,12 @@
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import './globals.css'
+//    ESTILOS.    //
+import { Inter } from 'next/font/google';
+import './globals.css';
+//   /ESTILOS.    //
 
-const inter = Inter({ subsets: ['latin'] })
+//    UTIL.    //
+import type { Metadata } from 'next';
+//    /UTIL.    //
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'SGH',
@@ -15,16 +19,18 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="pt-br">
-      <body className={inter.className}>
-        <div id='topo'>
-          {/* <h1>Header</h1> */}
-        </div>
-        <div id="principal">
-          {children}
-        </div>
-        <div id='rodape'>
-          {/* <h1>Footer</h1> */}
+    <html lang="pt-BR">
+      <body>
+        <div className={inter.className}>
+          <div id='topo'>
+            {/* <h1>Header</h1> */}
+          </div>
+          <div id="principal">
+            {children}
+          </div>
+          <div id='rodape'>
+            {/* <h1>Footer</h1> */}
+          </div>
         </div>
       </body>
     </html>
