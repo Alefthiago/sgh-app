@@ -1,12 +1,14 @@
-// 'use client';
-// import Link from 'next/link';
-// import { useState } from 'react';
-
 export default function Home() {
     return (
-        <>
-            <h1>alo</h1>
-        </>
+        <div className="flex flex-col items-center justify-center h-4/5 w-4/5">
+            <div>
+                <h1>Calendario</h1>
+            </div>
+            <div>
+                <button className={style_button}>Teste</button>
+            </div>
+            
+        </div>
     )
 }
 
