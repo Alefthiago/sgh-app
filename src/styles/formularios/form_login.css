@@ -4,17 +4,7 @@
     align-items: center;
     min-height: 20vh;
     min-width: 20vw;
-    /* border: 1px solid var(--cor-componentes-lite); */
-}
-
-
-#rodape_form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 10vh;
-    min-width: 20vw;
-    /* border: 1px solid var(--cor-componentes-lite); */
+    /* border: 1px solid var(--cor-componentes-app); */
 }
 
 legend {

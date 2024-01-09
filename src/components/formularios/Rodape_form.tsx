@@ -1,5 +1,10 @@
+//      ESTILOS.      //
 import '@/styles/formularios/form_rodape.css';
+//     /ESTILOS.      //
+
+//      UTIL.      // 
 import Link from 'next/link';
+//     /UTIL.      //
 
 interface RodapeFormProps {
     rota: string,

@@ -4,8 +4,8 @@
 
 :root {
   /*    CORES MODO LITE.     */
-  --background-lite: #0B8E95;
-  --cor-componentes-lite: #294D61;
+  --background-app: #0B656B;
+  --cor-componentes-app: #0B656B;
   /*   /CORES MODO LITE.     */
 
   /*    CORES MODO DARK.     */
@@ -14,7 +14,7 @@
 }
 
 body {
-  background: var(--background-lite);
+  background: var(--background-app);
 }
 
 html {
@@ -24,10 +24,10 @@ html {
     width: 8px;
   }
   ::-webkit-scrollbar-track {
-    background: var(--background-lite);
+    background: var(--background-app);
   }
   ::-webkit-scrollbar-thumb {
-    background: var(--cor-componentes-lite);
+    background: var(--cor-componentes-app);
     border-radius: 10px;
   }
   ::-webkit-scrollbar-thumb:hover {
