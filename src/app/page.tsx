@@ -1,3 +1,4 @@
+'use client';
 //    COMPONENTES.    //
 import FormLogin from '@/components/formularios/Form_login'
 import RodapeForm from "@/components/formularios/Rodape_form";

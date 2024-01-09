@@ -6,11 +6,13 @@ import '@/styles/formularios/form_login.css';
 
 //      UTIL.      //
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 //     /UTIL.      //
 
 export default function FormLogin() {
     const [email, setEmail] = useState<string>();
     const [senha, setSenha] = useState<string>();
+    const route = useRouter();
 
     return (
         <div id="form_login">
@@ -46,7 +48,7 @@ export default function FormLogin() {
                     </div>
                     <div className={"mt-3 flex justify-center"}>
                         <button
-                            type="button" style={{ backgroundColor: 'black' }} 
+                            type="button" style={{ backgroundColor: 'black' }} onClick={() => route.push('/calendario')}
                             className={"inline-block rounded  px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-neutral-50 shadow-[0_4px_9px_-4px_rgba(51,45,45,0.7)] transition duration-150 ease-in-out hover:bg-neutral-800 hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:bg-neutral-800 focus:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:outline-none focus:ring-0 active:bg-neutral-900 active:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)]"}>
                             Entrar
                         </button>
