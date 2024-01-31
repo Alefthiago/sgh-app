@@ -35,21 +35,22 @@ export default function Calendario() {
 
     const diasDoMes = gerar_dias_Mes(ano_atual, mes_atual);
 
-    const [tamanhoTela, setTamanhoDaTela] = useState(typeof window !== 'undefined' ? window.innerWidth : 0);
+    const [larguraTela, setLarguraTela] = useState(0);
 
     useEffect(() => {
-        if (typeof window !== 'undefined') {
-            const handleResize = () => {
-                setTamanhoDaTela(window.innerWidth);
-            };
-
-            window.addEventListener('resize', handleResize);
-
-            return () => {
-                window.removeEventListener('resize', handleResize);
-            };
+        function handleResize() {
+            setLarguraTela(window.innerWidth);
         }
-    }, [tamanhoTela]);
+
+        window.addEventListener('resize', handleResize);
+
+        // Chame a função handleResize imediatamente para obter a largura inicial da tela
+        handleResize();
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
     const diasDaSemana = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
 
@@ -112,7 +113,7 @@ export default function Calendario() {
                         <tr className="border">
                             {diasDaSemana.map((dia, index) => (
                                 <th key={index} className="text-left py-2 px-4">
-                                    {tamanhoTela > 600 ? dia : dia.substr(0, 1)}
+                                    {larguraTela > 600 ? dia : dia.substr(0, 1)}
                                 </th>
                             ))}
                         </tr>
