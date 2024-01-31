@@ -32,21 +32,23 @@ export default function Calendario() {
     const [ano_atual, setAnoAtual] = useState(new Date().getFullYear());
     const [mes_atual, setMesAtual] = useState(new Date().getMonth());
 
-    
+
     const diasDoMes = gerar_dias_Mes(ano_atual, mes_atual);
-    
-    const [tamanhoTela, setTamanhoDaTela] = useState(window.innerWidth);
+
+    const [tamanhoTela, setTamanhoDaTela] = useState(typeof window !== 'undefined' ? window.innerWidth : 0);
 
     useEffect(() => {
-        const handleResize = () => {
-            setTamanhoDaTela(window.innerWidth);
-        };
+        if (typeof window !== 'undefined') {
+            const handleResize = () => {
+                setTamanhoDaTela(window.innerWidth);
+            };
 
-        window.addEventListener('resize', handleResize);
+            window.addEventListener('resize', handleResize);
 
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
+            return () => {
+                window.removeEventListener('resize', handleResize);
+            };
+        }
     }, [tamanhoTela]);
 
     const diasDaSemana = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
@@ -90,6 +92,7 @@ export default function Calendario() {
 
     return (
         <div className="w-full h-4/5">
+
             <div className="flex flex-col sm:flex-row justify-between mb-4">
                 <button className={style_button} onClick={retroceder_mes}>
                     Anterior
@@ -101,7 +104,9 @@ export default function Calendario() {
                     Próximo
                 </button>
             </div>
+
             <div className='w-full h-full sm:overflow-hidden overflow-scroll'>
+
                 <table className=" w-full h-full text-sm">
                     <thead>
                         <tr className="border">
@@ -112,6 +117,7 @@ export default function Calendario() {
                             ))}
                         </tr>
                     </thead>
+
                     <tbody>
                         {[...Array(Math.ceil(diasDoMes.length / 7))].map((_, semanaIndex) => (
                             <tr key={semanaIndex}>
@@ -128,6 +134,7 @@ export default function Calendario() {
                         ))}
                     </tbody>
                 </table>
+
             </div>
         </div>
     );
