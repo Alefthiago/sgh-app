@@ -6,7 +6,6 @@ import './globals.css';
 //    UTIL.    //
 import type { Metadata } from 'next';
 //    /UTIL.    //
-const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'SGH',
@@ -21,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body>
-        <div className={inter.className}>
+        <div>
           <div id='topo'>
             {/* <h1>Header</h1> */}
           </div>

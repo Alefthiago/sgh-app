@@ -12,19 +12,35 @@ export default function RootLayout({
 }: {
     children: React.ReactNode
 }) {
-    const click_sidebar = () => {
+    //      FUNCOES.        //
+
+    //      CONTROLE DO SIDEBAR.        //
+    const clickSidebar = () => {
         const sidebar = document.getElementById('logo-sidebar');
         if (sidebar) {
             sidebar.classList.toggle('-translate-x-full');
         }
     };
 
+    const fechar_sidebar = () => {
+        const sidebar = document.getElementById('logo-sidebar');
+        if (sidebar && !sidebar.classList.contains('-translate-x-full')) {
+            sidebar.classList.add('-translate-x-full');
+        }
+    };
+    //     /CONTROLE DO SIDEBAR.        //
+
+    //     /FUNCOES.        //
+
     return (
         <div className={"h-full w-full items-center flex justify-center bg-white"}>
-            <Sidebar click_sidebar={click_sidebar} />
-            <div className="flex justify-center items-center p-4 sm:ml-64 h-full w-full" onClick={click_sidebar}>
+
+            <Sidebar clickSidebar={clickSidebar} />
+
+            <div className="flex justify-center items-center lg:p-4 lg:ml-64 h-full w-full" onClick={fechar_sidebar}>
                 {children}
             </div>
-        </div >
+
+        </div>
     )
 }
