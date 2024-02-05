@@ -37,7 +37,7 @@ export default function RootLayout({
 
             <Sidebar clickSidebar={clickSidebar} />
 
-            <div className="flex justify-center items-center lg:p-4 lg:ml-64 h-full w-full" onClick={fechar_sidebar}>
+            <div className="flex justify-center items-center lg:p-4 lg:ml-64 h-full w-full mt-[60px]" onClick={fechar_sidebar}>
                 {children}
             </div>
 

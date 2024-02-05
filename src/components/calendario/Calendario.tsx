@@ -29,9 +29,10 @@ function gerar_dias_Mes(ano: any, mes: any) {
 }
 
 export default function Calendario() {
-    const [ano_atual, setAnoAtual] = useState(new Date().getFullYear());
-    const [mes_atual, setMesAtual] = useState(new Date().getMonth());
-
+    const data_atual = new Date();
+    const [ano_atual, setAnoAtual] = useState(data_atual.getFullYear());
+    const [mes_atual, setMesAtual] = useState(data_atual.getMonth());
+    const [btn_data_atual, setBtnDataAtual] = useState(data_atual.getMonth());
 
     const diasDoMes = gerar_dias_Mes(ano_atual, mes_atual);
 
@@ -55,18 +56,29 @@ export default function Calendario() {
     const diasDaSemana = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
 
     const retroceder_mes = () => {
-        setMesAtual((prevMes) => (prevMes === 0 ? 11 : prevMes - 1));
+        setMesAtual((prevMes: any) => (prevMes === 0 ? 11 : prevMes - 1));
+        // alert(mes_atual)    
         if (mes_atual === 0) {
-            setAnoAtual((prevAno) => prevAno - 1);
+            setAnoAtual((prevAno: any) => prevAno - 1);
         }
     };
 
     const avancar_mes = () => {
-        setMesAtual((prevMes) => (prevMes === 11 ? 0 : prevMes + 1));
+        setMesAtual((prevMes: any) => (prevMes === 11 ? 0 : prevMes + 1));
+        // alert(mes_atual)
         if (mes_atual === 11) {
-            setAnoAtual((prevAno) => prevAno + 1);
+            setAnoAtual((prevAno: any) => prevAno + 1);
         }
     };
+
+    const mes_padrao = () => {
+        const hoje = new Date();
+        // alert(mes_atual)
+        setMesAtual(hoje.getMonth());
+        setAnoAtual(hoje.getFullYear());
+        setBtnDataAtual(hoje.getMonth());
+        // Parei aqui. precisa corrigir o botão de mês atual e o gereciamento de datas para o calendário.
+    }
 
     const info_dia = (dia: any) => {
         if (dia !== null) {
@@ -91,28 +103,42 @@ export default function Calendario() {
         }
     };
 
+    const dia_atual = (ano: any, mes: any, dia: any) => {
+        const hoje = new Date();
+        return ano === hoje.getFullYear() && mes === hoje.getMonth() && dia === hoje.getDate();
+    }
     return (
-        <div className="w-full h-4/5">
+        <div className="w-full h-4/5 overflow-auto mt-2">
 
             <div className="flex flex-col sm:flex-row justify-between mb-4">
-                <button className={style_button} onClick={retroceder_mes}>
-                    Anterior
-                </button>
-                <h2 className="text-lg text-center font-semibold mb-3 mt-3">
-                    {new Date(ano_atual, mes_atual).toLocaleDateString('default', { month: 'long', year: 'numeric' }).toUpperCase()}
+                <div className={"flex justify-center sm:flex-col"}>
+                    <button type="button" className={"w-full text-white bg-color-component hover:bg-color-hover focus:outline-none focus:ring-2 focus:ring-green-400 font-medium sm:rounded-full text-sm px-5 py-2.5 text-center sm:me-2 mb-2"} onClick={retroceder_mes}>
+                        Anterior
+                    </button>
+                </div>
+
+                <h2 className="text-lg text-center font-semibold mb-3 mt-3 flex flex-col justify-center items-center">
+                    <p>
+                        {new Date(ano_atual, mes_atual).toLocaleDateString('default', { month: 'long', year: 'numeric' }).toUpperCase()}
+                    </p>
+                    <button type="button" className={`${btn_data_atual != mes_atual ? '' : 'invisible'} px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300`} onClick={mes_padrao}>
+                        Mês Atual
+                    </button>
                 </h2>
-                <button className={style_button} onClick={avancar_mes}>
-                    Próximo
-                </button>
+
+                <div className={"flex justify-center sm:flex-col"}>
+                    <button type="button" className={"w-full text-white bg-color-component hover:bg-color-hover focus:outline-none focus:ring-2 focus:ring-green-400 font-medium sm:rounded-full text-sm px-5 py-2.5 text-center sm:me-2 mb-2"} onClick={avancar_mes}>
+                        Próximo
+                    </button>
+                </div>
             </div>
 
-            <div className='w-full h-full sm:overflow-hidden overflow-scroll'>
-
+            <div className='w-full h-4/5 overflow-auto'>
                 <table className=" w-full h-full text-sm">
                     <thead>
                         <tr className="border">
                             {diasDaSemana.map((dia, index) => (
-                                <th key={index} className="text-left py-2 px-4">
+                                <th key={index} className="text-left py-2 px-4 border">
                                     {larguraTela > 600 ? dia : dia.substr(0, 1)}
                                 </th>
                             ))}
@@ -125,8 +151,9 @@ export default function Calendario() {
                                 {[0, 1, 2, 3, 4, 5, 6].map((diaDaSemana) => {
                                     const diaIndex = semanaIndex * 7 + diaDaSemana;
                                     const dia = diasDoMes[diaIndex];
+                                    const atual = dia_atual(ano_atual, mes_atual, dia);
                                     return (
-                                        <td key={diaIndex} className="py-2 px-4 border align-text-top  h-14 w-10" onClick={() => info_dia(dia)}>
+                                        <td key={diaIndex} className={`py-2 px-4 border align-text-top h-14 w-10 ${atual ? 'bg-color-hover text-white font-bold' : ''}`} onClick={() => info_dia(dia)}>
                                             {dia !== null && <span>{dia}</span>}
                                         </td>
                                     );
@@ -140,6 +167,3 @@ export default function Calendario() {
         </div>
     );
 }
-
-
-const style_button = "inline-block rounded bg-neutral-800 px-10 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-neutral-50 shadow-[0_4px_9px_-4px_rgba(51,45,45,0.7)] transition duration-150 ease-in-out hover:bg-neutral-800 hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:bg-neutral-800 focus:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:outline-none focus:ring-0 active:bg-neutral-900 active:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] dark:bg-neutral-900 dark:shadow-[0_4px_9px_-4px_#030202] dark:hover:bg-neutral-900 dark:hover:shadow-[0_8px_9px_-4px_rgba(3,2,2,0.3),0_4px_18px_0_rgba(3,2,2,0.2)] dark:focus:bg-neutral-900 dark:focus:shadow-[0_8px_9px_-4px_rgba(3,2,2,0.3),0_4px_18px_0_rgba(3,2,2,0.2)] dark:active:bg-neutral-900 dark:active:shadow-[0_8px_9px_-4px_rgba(3,2,2,0.3),0_4px_18px_0_rgba(3,2,2,0.2)]";
